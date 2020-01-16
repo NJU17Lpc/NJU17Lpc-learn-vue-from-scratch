@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{getFullName()}}</h2>
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                firstName: 'ikuta',
+                lastName: 'erika'
+            },
+            // 计算属性用于，对某种数据进行变化时反应结果
+            // 应该用 属性 的角度，看待computed里面的东西，而不是方法
+            computed: {
+                fullName: function(){
+                    return this.firstName+' '+this.lastName
+                }
+            },
+            methods: {
+                getFullName: function(){
+                    return this.firstName+' '+this.lastName
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

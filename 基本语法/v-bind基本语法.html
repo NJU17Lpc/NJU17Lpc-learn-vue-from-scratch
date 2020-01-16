@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 我们想要做动态绑定，比如一个图片的url不是写死的-->
+        <!-- 错误的做法如下 -->
+        <img src="{{imgURL}}" alt="">
+        <!-- 正确的做法 -->
+        <img v-bind:src="imgURL" alt="">
+        <a v-bind:href="aHref">百度一下</a>
+        <!-- 大概解释一下，一般src不会直接写死，而是有一个服务器的中转，这里的imgURL就传回了对应的动态数据
+        体现了声明式开发 -->
+
+        <!-- v-bind也提供了一个语法糖，因为经常用 -->
+        <div>
+            <img :src="imgURL" alt="">
+            <a :href="aHref">百度一下</a>
+        </div>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                imgURL: "http://c1.haibao.cn/img/600_0_100_0/1485318779.0733/973fd32672ce8cbb9852512ed3edaf93.jpg",
+                aHref: "http://www.baidu.com"
+            }
+        })
+    
+    </script>
+</body>
+</html>

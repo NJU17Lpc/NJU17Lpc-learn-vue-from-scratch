@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 有可能跑js的时候卡住了，页面显示的就是{{message}}，但一般我们不想让用户看到这个
+        这时我们考虑v-cloak(斗篷)，同时在这个v-cloak属性上添加style让他不要显示出来
+        但实际中并不会用这个 -->
+        <h2 v-cloak>{{message}}</h2>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        setTimeout(function(){
+            const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            }
+        })
+        }, 2000)
+    
+    
+    </script>
+</body>
+</html>

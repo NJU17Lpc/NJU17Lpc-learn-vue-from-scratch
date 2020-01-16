@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- 有时候我只想写{{message}}文本，不希望被替换
+        这个v-pre就是让他不要做解析的 -->
+        <h2 v-pre>{{message}}</h2>
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            }
+        })
+    
+    </script>
+</body>
+</html>

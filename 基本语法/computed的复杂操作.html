@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <h2>图书总价格:{{totalPrice}}</h2>
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                books:[
+                    {id:110, name: '机器学习', price:119},
+                    {id:111, name: '深度学习', price:110},
+                    {id:112, name: '强化学习', price:100},
+                    {id:113, name: '对抗学习', price:133},
+                    {id:114, name: '放弃学习', price:0},
+                ]
+            },
+            // methods没有缓存，computed有缓存，效率会高一些，于是只会调用一次
+            computed: {
+                totalPrice: function(){
+                    let res = 0;
+                    for(let i of this.books){
+                        res += i.price;
+                    }
+                    return res;
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

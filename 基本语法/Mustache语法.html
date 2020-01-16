@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- v-once保证修改app.message时，不会修改v-once标记的部分
+        即元素和组件只渲染一次，不随着数据的改变而变化 -->
+        <h2 v-once>{{message}}, lpc</h2>
+        <h2>{{firstName + lastName}}</h2>
+        <h2>{{firstName + ' ' + lastName}}</h2>
+        <h2>{{firstName}}    {{lastName}}</h2>
+        <h2>{{counter * 2}}</h2>
+    </div>  
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                firstName: 'saito',
+                lastName: 'asuka',
+                counter: 200
+            }
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 不加''时表示这个是变量 -->    
+        <h2 class="title" :class="[active, 'line']">{{message}}</h2>
+        <h2 class="title" :class="getClasses()">{{message}}</h2>
+    
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                active: 'aaaaaa'
+            },
+            methods: {
+                getClasses: function(){
+                    return [this.active, 'line']
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
