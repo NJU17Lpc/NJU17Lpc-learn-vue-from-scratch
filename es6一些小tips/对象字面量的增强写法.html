@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        //对象的正常写法 es5
+        const obj = {
+            oName : 'saito asuka',
+            oAge : 20,
+            oHeight : 160,
+            sing: function() {
+                console.log(this.oName+'在跳舞');
+            },
+            eat: function(){
+                console.log(this.oName+'在吃饭');
+            }
+        }
+
+
+        // 1. 属性的增强写法
+        const name = 'ikuta erika';
+        const age = 22;
+        const height = 162;
+
+        const erika = {
+            name,
+            age,
+            height,
+            run(){
+                console.log(this.name+'在跑步');
+            }
+        }
+        console.log(erika);
+
+    </script>
+</body>
+</html>

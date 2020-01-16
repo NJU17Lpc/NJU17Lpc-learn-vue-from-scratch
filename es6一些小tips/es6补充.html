@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <button>按钮0</button>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+ 
+
+
+
+    <script>
+        // var没有块级作用域，这个{}就没有什么意义了
+        {
+            var name = 'lpc';
+            console.log(name);
+        }
+        console.log(name);
+        // if的块级没有作用域
+        var func;
+        if(true){
+            var tName = 'asuka';
+
+            func = function(){
+                console.log(tName);
+            }
+        }
+        // 别人把这个名字改掉了，这是我们不希望的
+        tName = 'lpc'
+
+        func();
+
+        // for的块级也会有问题
+        // var btns = document.getElementsByTagName('button');
+        // for(var i=0; i<btns.length; i++){
+        //     btns[i].addEventListener('click', function(){
+        //         // 永远显示点击的是第五个按钮，因为函数中的i引用的是外面的i
+        //         // 要解决这个问题，需要引入一个闭包；感觉闭包是利用了按值传递，copy了一下
+        //         // 但其实现在es6，直接把var改成let就行了
+        //         console.log('第'+i+'个按钮被点击');
+        //     })
+        // }
+
+        // es5之前if和for都没有块级作用域，那个时候就需要用function来解决引用外部变量的问题
+        // es6中加入了let，是有if和for的块级作用域
+
+        // es5使用闭包示例
+        // var btns = document.getElementsByTagName('button');
+        // for(var i=0; i<btns.length; i++){
+        //     (function(i){
+        //         btns[i].addEventListener('click', function(){
+        //             console.log('第'+i+'个按钮被点击');
+        //         })
+        //     })(i)
+        // }
+
+        //es6使用let示例
+        var btns = document.getElementsByTagName('button');
+        for(let i=0; i<btns.length; i++){
+            btns[i].addEventListener('click', function(){
+                console.log('第'+i+'个按钮被点击');
+            })
+        }
+
+    </script>
+</body>
+</html>

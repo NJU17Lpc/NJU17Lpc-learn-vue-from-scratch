@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in movies"
+             :class="{active: curIndex === index}"
+             @click="liClick(index)">
+             {{index}}.{{item}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+               // message: 'Hello',
+                movies: ['火影忍者', '鬼灭之刃', '某科学的超电磁炮', 'jojo'],
+                curIndex: 0 //记录哪个应该变成红色，这种方式用的挺多的
+            },
+            methods: {
+                liClick(index){
+                    this.curIndex = index;
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

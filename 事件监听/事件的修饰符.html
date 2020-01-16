@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 事件冒泡，我们想要阻止这个冒泡，即点击按钮时，只有按钮被响应 -->
+        <div @click='divClick'>
+            <!-- 这个.stop就是修饰符 -->
+            <button @click.stop='buttonClick'>按钮</button>
+
+        </div>
+
+        <!-- .prevent修饰符的使用，这里就可以阻止提交的默认行为。然后我们可以处理后自己再提交 -->
+        <br>
+        <form action="lpc">
+            <input type="submit" value="点一下玩一年" @click.prevent="submitClick">
+        </form>
+        <br>
+        <!-- 监听某个键盘的点击，一般多用keyup，keydown用的少一点 -->
+        <input type="text" @keyup="keyUp">
+        <!-- 只有enter键keyup才会检测到 -->
+        <input type="text" @keyup.enter="keyUp">
+        <br>
+
+        <!-- .once修饰符，有的按钮，我只希望被点一次，点过后再点没有用 -->
+        <button @click.once="btn2Click">按钮2</button>
+
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            },
+            methods: {
+                buttonClick(){
+                    console.log("this is button click");
+                },
+                divClick(){
+                    console.log("this is div click");
+                },
+                submitClick(){
+                    console.log("submit click");
+                },
+                keyUp(){
+                    console.log("key up");
+                },
+                btn2Click(){
+                    console.log("this is button 2 click");
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

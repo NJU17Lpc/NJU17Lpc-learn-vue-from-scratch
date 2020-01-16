@@ -8,6 +8,20 @@
     <div id="app">
         <h2>{{message}}</h2>
         <h2>图书总价格:{{totalPrice}}</h2>
+        <h2>测试computed: fullName</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+        <h2>{{fullName}}</h2>
+
+        <h2>测试methods: getFullName</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+        <h2>{{getFullName()}}</h2>
+
+        <h2>computed只调用了一次, methods调用了4次。于是computed因为有缓存，效率更高</h2>
+
 
     </div>
 
@@ -23,7 +37,9 @@
                     {id:112, name: '强化学习', price:100},
                     {id:113, name: '对抗学习', price:133},
                     {id:114, name: '放弃学习', price:0},
-                ]
+                ],
+                firstName: '斋藤',
+                lastName: '飞鸟'
             },
             // methods没有缓存，computed有缓存，效率会高一些，于是只会调用一次
             computed: {
@@ -33,6 +49,25 @@
                         res += i.price;
                     }
                     return res;
+                },
+                fullName: {
+                    set: function(newValue){
+                        // 一般不用set，可以直接删除这个方法
+                        const names = newValue.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                    },
+                    get: function(){
+                        // 
+                        console.log('this is fullName computed');
+                        return this.firstName + this.lastName;
+                    }
+                }
+            },
+            methods: {
+                getFullName: function(){
+                    console.log('this is getFullName() methods');
+                    return this.firstName+this.lastName;
                 }
             }
         })

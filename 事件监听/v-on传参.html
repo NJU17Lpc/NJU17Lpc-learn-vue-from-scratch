@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="btn1Click">按钮0</button>
+        <!-- 虽然123赋给event参数，但最终还只是一个参数，不是真正的event类型 -->
+        <button @click="btn2Click(123)">按钮1</button>
+        <!-- 调用时手动获取到浏览器参数的event对象: $event -->
+        <button @click="btn3Click(a, $event)">按钮2</button>
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                a: 2333
+            },
+            methods: {
+                btn1Click(){
+                    console.log("btn1Click");
+                },
+                btn2Click(event){
+                    console.log('-----------',event);
+                },
+                btn3Click(abc, event){
+                    // btn3Click() : event会传给第一个参数
+
+                    console.log('+++++++++', abc, event);
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

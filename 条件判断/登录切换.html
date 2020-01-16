@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if实际上在做dom元素的创建；对比v-show，v-show为false时只是加了一个样式display: none，但是元素还在dom里面 -->
+        <!-- 因此如果显示和隐藏之间切换很频繁时，最好v-show -->
+        <span v-if="isUser">
+            <!-- 这个key来决定文本框输入的内容是否会被复用 -->
+            <label for="userName">用户账号</label>
+            <input type="text" id="userName" placeholder="用户账号" key='userName'>
+        </span>
+        <span v-else>
+            <label for="userEmail">用户邮箱</label>
+            <input type="text" id="userEmail" placeholder="用户邮箱" key='userEmail'>
+        </span>
+        <button @click="isUser = !isUser">切换登录类型</button>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                isUser: true,
+            },
+            methods: {
+
+            }
+        })
+    
+    </script>
+</body>
+</html>

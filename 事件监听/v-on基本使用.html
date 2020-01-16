@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{counter}}</h2>
+        <button v-on:click="counter++">+</button>
+        <button v-on:click="counter--">-</button>
+        <h2>anotherCounter:{{counter1}}</h2>
+        <button v-on:click="increment">+</button>
+        <button v-on:click="decrement">-</button>
+        <h2>语法糖版本:{{counter2}}</h2>
+        <button @click="counter2++">+</button>
+        <button @click="counter2--">-</button>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                counter: 0,
+                counter1: 0,
+                counter2: 0
+            },
+            methods: {
+                increment(){
+                    this.counter1++;
+                },
+                decrement(){
+                    this.counter1--;
+                }
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- 这个key是为了高效地更新虚拟DOM，记住这个key要是唯一的 -->
+            <li v-for="item in names" :key="item">{{item}}</li>
+        </ul>
+
+        <!-- 在遍历过程中获取索引 -->
+        <ul>
+            <li v-for="(item, index) in names">{{index+1}}.{{item}}</li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <!-- 如果只获取一个值，那么得到的只是value，而没有key -->
+            <li v-for="(item, key) in bookInfo">{{key}}:{{item}}</li>
+        </ul>
+
+        <!-- 测试响应式，有些方法是不能做响应式的 -->
+        <button @click="addName">添加name</button>
+        <button @click="modifyFirstName">尝试修改第一个name</button>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                names: ['saito asuka', 'ikuta erika', 'nanase'],
+                bookInfo:{id:111, name: '深度学习', price:110},
+
+            },
+            methods: {
+                addName(){
+                    // push可以做响应式
+                    this.names.push("kakki");
+                },
+                modifyFirstName(){
+                    // 这个修改显示不出来，但是在console里面是显示得修改过的
+                    // 说明没能做到响应式
+                    // 通过索引修改数组元素不是响应式的
+                    // this.names[0] = "阿羞羞";
+
+                    // 两种解决方法
+                    // this.names.splice(0, 1, '阿羞羞');
+                    Vue.set(this.names, 0, '阿羞羞');
+                }
+                // push\pop\shift\unshift(往数组前面加元素)\splice(这玩意可以删除、替换、插入元素)支持响应式
+            }
+        })
+    
+    </script>
+</body>
+</html>
