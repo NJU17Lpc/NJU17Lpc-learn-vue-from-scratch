@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- 单选框 -->
+        <label for="lpc">
+            <input type="checkbox" id="lpc" v-model="isAgree">agree?
+        </label>
+        <h2>您选择的是{{isAgree}}</h2>
+        <button :disabled="!isAgree">下一步</button>
+        <!-- 多选框 -->
+    <div>
+        <label for="lpc1">
+            <input type="checkbox" id="lpc1" value="唱" v-model="hobbies">唱
+        </label>
+        <label for="lpc2">
+            <input type="checkbox" id="lpc2" value="跳" v-model="hobbies">跳
+        </label>
+        <label for="lpc3">
+            <input type="checkbox" id="lpc3" value="rap" v-model="hobbies">rap
+        </label>
+        <label for="lpc4">
+            <input type="checkbox" id="lpc4" value="篮球" v-model="hobbies">篮球
+        </label>
+        <h2>您选择的爱好有{{hobbies}}</h2>
+    </div>
+    <!-- 不把内容写死，这个语法确实好使 -->
+    <div>
+        <label v-for="item in hobbiesForCheck" :for="item">
+            <input type="checkbox" :id="item" :value="item" v-model="newHobbies">{{item}}
+        </label>
+        
+        <h2>您选择的爱好有{{newHobbies}}</h2>
+    </div>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                isAgree: false,
+                hobbies: [],
+                hobbiesForCheck: ['唱','跳','rap','篮球','学习'],
+                newHobbies: []
+            }
+        })
+    
+    </script>
+</body>
+</html>

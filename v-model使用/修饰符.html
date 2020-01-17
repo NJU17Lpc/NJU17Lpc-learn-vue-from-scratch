@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- lazy: input里面的内容默认与message实时更新，lazy可以让input失去焦点时再更新message -->
+        <input type="text" v-model.lazy="message">
+        <h2>{{message}}</h2>
+
+        <!-- number:不加number时，默认为string类型，即使输入数字也是string  -->
+        <input type="number" v-model.number="age">
+        <h2>{{age}}--{{typeof age}}</h2>
+
+        <!-- trim:去除输入字符串两边空格 -->
+        <input type="text" v-model.trim="name">
+        <h2>您输入的名字是:{{name}}</h2>
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                age: '',
+                name: ''
+            }
+        })
+    
+    </script>
+</body>
+</html>

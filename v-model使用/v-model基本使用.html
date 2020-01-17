@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 双向绑定，在页面中修改对话框里面的值时，message内容也会改变 -->
+        <input type="text" v-model="message">
+        <h2>{{message}}</h2>
+        <h2>简单实现</h2>
+        <!-- message用v-bind绑定到value上，value通过一个method:v-on绑定到message上 -->
+        <input type="text" :value="message" @input="valueChange">
+        <!-- 另一种更简洁的写法 -->
+        <input type="text" :value="message" @input="message = $event.target.value">
+
+    </div>
+
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            },
+            methods: {
+                valueChange(event) {
+                    this.message = event.target.value;
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
