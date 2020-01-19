@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <!-- <cpn1></cpn1> -->
+        <cpn2></cpn2>
+        <p>----------------</p>
+        <cpn3></cpn3>
+        <p>----------------</p>
+        <cpn4></cpn4>
+        <p>----------------</p>
+        <cpn5></cpn5>
+    </div>
+
+    <template id="cpnC5">
+        <!-- 在js里面写html总是不好的，需要把html的部分抽出来 -->
+        <div>
+            <h2>我是标题</h2>
+            <p>我是内容</p>
+            <p>我是cpnC5</p>
+        </div>  
+    </template>
+    <script src="../vue.js"></script> 
+    <script>
+        const cpnC1 = Vue.extend({
+            template:`
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容</p>
+                    <p>我是cpnC1</p>
+                </div>
+            `
+        })
+
+        const cpnC2 = Vue.extend({
+            template:`
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容</p>
+                    <p>----------------</p>
+                    <cpn1></cpn1>
+                    <p>----------------</p>
+                    <p>我是cpnC2</p>
+
+                </div>
+            `,
+            components: {
+                cpn1: cpnC1
+            }
+        })
+
+
+        // 一个语法糖
+        Vue.component('cpn3', {
+            template:`
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容</p>
+                    <p>我是cpnC3</p>
+                </div>
+            `
+        })
+
+
+        // 其实Vue实例也可以作为组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            },
+            components: {
+                // cpn1: cpnC1,
+                'cpn2': cpnC2,
+                // 局部组件语法糖
+                'cpn4': {
+                    template:`
+                        <div>
+                            <h2>我是标题</h2>
+                            <p>我是内容</p>
+                            <p>我是cpnC4</p>
+                        </div>
+                     `
+                },
+                'cpn5': {
+                    template: '#cpnC5'
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

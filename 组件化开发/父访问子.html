@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>{{message}}</h2>
+        <cpn></cpn>
+        <refcpn ref="refname"></refcpn>
+        <button @click="btnClick">按钮</button>
+        <button @click="refClick">测试ref</button>
+
+    </div>
+
+    <template id="cpn">
+        <div>我是子组件</div>
+    </template>
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            },
+            methods: {
+                btnClick(){
+                    console.log(this.$children);
+                    // 因为$children通常涉及下标属性，所以通常不会用，而是用$refs
+                    for(let c of this.$children){
+                        console.log(c.name);
+                        c.showMessage();
+                    }
+                },
+                refClick(){
+                    console.log(this.$refs.refname.name);
+                }
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data(){
+                        return {
+                            name: "i am the name of cpn"
+                        }
+                    },
+                    methods: {
+                        showMessage(){
+                            console.log("this is showMessage");
+                        }
+                    }
+                },
+                refcpn: {
+                    template: "#cpn",
+                    data(){
+                        return {
+                            name: "i am the name of ref cpn"
+                        }
+                    },
+                    methods: {
+                        showMessage(){
+                            console.log("this is showMessage");
+                        }
+                    }
+                },
+            }
+        })
+    
+    </script>
+</body>
+</html>

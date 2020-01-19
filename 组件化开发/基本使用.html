@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用全局组件，组件必须挂载到某个vue实例下，不然不起作用 -->
+        <h4>使用全局组件my-cpn</h4>
+        <my-cpn></my-cpn>
+        <h4>使用app局部组件my-cpn，这里是app</h4>
+        <!-- 使用局部组件 -->
+        <cpnl></cpnl>
+    </div>
+    <h5>-------------------------</h5>
+    <div id="app1">
+        <!-- 使用组件，组件必须挂载到某个vue实例下，不然不起作用 -->
+        <h4>使用全局组件my-cpn</h4>
+        <my-cpn></my-cpn>
+        <h4>使用app局部组件my-cpn，而这里是app1</h4>
+        <cpnl></cpnl>
+
+    </div>
+
+
+
+    <script src="../vue.js"></script> 
+    <script>
+        // 1.创建组件构造器
+        const cpnC = Vue.extend({
+            template:`
+                <div>
+                    <h2>我是全局组件</h2>
+                    <h3>hello lpc</h3>
+                </div>
+            `
+        })
+
+        const localCpn = Vue.extend({
+            template:`
+                <div>
+                    <h2>我是局部组件</h2>
+                    <h3>hello lpc</h3>
+                </div>
+            `
+        })
+
+        // 2.注册组件(组件标签名, 组件构造器)，这种方式注册的是全局组件，可以在多个Vue实例下面使用
+        Vue.component('my-cpn', cpnC)
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello'
+            },
+            components: {
+                cpnl: localCpn
+            }
+        })
+
+        const app1 = new Vue({
+            el: '#app1'
+        })
+    
+    </script>
+</body>
+</html>

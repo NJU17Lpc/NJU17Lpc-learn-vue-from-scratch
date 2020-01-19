@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 父组件通过props向子组件传递数据 -->
+    <!-- 子组件通过事件向父组件发送消息 -->
+    <div id="app">
+        <cpn :child_movies="movies" :child_message="message"></cpn>
+    </div>
+    <template id="cpn">
+        <div>
+            <h2>this is template cpn</h2>
+            <h2>{{child_message}}</h2>
+            <ul>
+                <li v-for="movie in child_movies">{{movie}}</li>
+            </ul>
+
+        </div>
+    </template>
+    <script src="../vue.js"></script> 
+    <script>
+        const cpn = {
+            template: "#cpn",
+            // 三种props书写方式
+            // props: ['child_movies', 'child_message'],
+            // props: {
+            //     child_movies: Array,
+            //     child_message: String
+            // }
+            props: {
+                child_movies: {
+                    type: Array,
+                    default: ['哈利波特'],
+                    required: true // 表示必须要传递这个值，不然报错
+                },
+                child_message: {
+                    type: String,
+                    default: "saito asuka"
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                movies: ['忘记悲伤的方法','火影忍者','鬼灭之刃']
+            },
+            components: {
+                cpn
+            }
+        })
+    
+    </script>
+</body>
+</html>
