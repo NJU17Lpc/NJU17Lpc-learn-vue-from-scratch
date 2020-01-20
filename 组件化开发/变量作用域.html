@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 这里变量的作用域应该是从vue实例下找 -->
+        <cpn v-show="isShow"></cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <!-- 这里template作用域应该是组件内部数据 -->
+            <button v-show="isShow">组件isShow按钮</button>
+            <button>组件普通按钮</button>
+        </div>
+    </template>
+    <script src="../vue.js"></script> 
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello',
+                isShow: true
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data() {
+                        return {
+                            isShow: true
+                        }
+                    }
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
